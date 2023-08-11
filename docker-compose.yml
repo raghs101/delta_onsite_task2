@@ -1,0 +1,76 @@
+version: "3"
+services:
+  main_server:
+  build:
+    context: main_server
+  ports:
+    - "5000:5000"
+  app1:
+    build:
+      context: mess_1
+    ports:
+      - "8001:5000"
+  app2:
+    build:
+      context: mess_1
+    ports:
+     - "8002:5000"
+  app3:
+    build:
+      context: mess_1
+    ports:
+      - "8003:5000"
+  app4:
+    build:
+      context: mess_2
+    ports:
+      - "8004:5000"
+  app5:
+    build:
+      context: mess_2
+    ports:
+      - "8005:5000"
+  app6:
+    build:
+      context: mess_2
+    ports:
+      - "8006:5000"
+  app7:
+    build:
+      context: mess_3
+    ports:
+      - "8007:5000"
+  app8:
+    build:
+      context: mess_3
+    ports:
+      - "8008:5000"
+  app9:
+    build:
+      context: mess_3
+    ports:
+      - "8009:5000"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - main_server
+      - app1
+      - app2
+      - app3
+      - app4
+      - app5
+      - app6
+      - app7
+      - app8
+      - app9
+    ports:
+      - "81:81"
+      - "82:82"
+      - "83:83"
+
+
+  
+    
+    
